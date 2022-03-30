@@ -1,9 +1,9 @@
-let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+const nameRegex = new RegExp ('^[A-Z]{1}[a-z]{3,}$');
 const addressRegex = RegExp('^[a-zA-Z0-9#,]{4,}$');
 const cityStateRegex = RegExp('^[a-zA-Z]{4,}$');
 const zipRegex = RegExp("^[0-9]{3}\\s{0,1}[0-9]{3}$");
 const phoneNumberRegex = RegExp('^\\d{2}(\\s{1}\\d{10})$');
-const emailRegex = RegExp("^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$");
+const emailRegex = RegExp("^[a-zA-Z]+[a-zA-Z0-9]*[-.+ _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$");
 
 class Contact {
 
@@ -22,8 +22,22 @@ class Contact {
         return this._firstName;
     }
 
+    set firstName(firstName) {
+        if (nameRegex.test(firstName))
+            this._firstName = firstName;
+        else
+            throw new Error ("First Name : '" + firstName + "' is Invalid!");
+    }
+
     get lastName() {
         return this._lastName;
+    }
+    
+    set lastName(lastName) {
+        if (nameRegex.test(lastName))
+            this._lastName = lastName;
+        else
+            throw new Error ("LAST NAME is Incorrect ");
     }
 
     get address() {
@@ -50,60 +64,48 @@ class Contact {
         return this._email;
     }
 
-    set firstName(firstName) {
-        if (nameRegex.test(firstName))
-            this._firstName = firstName;
-        else
-            throw "FIRST NAME is Incorrect ";
-    }
-
-    set lastName(lastName) {
-        if (nameRegex.test(lastName))
-            this._lastName = lastName;
-        else
-            throw "LAST NAME is Incorrect ";
-    }
+    
 
     set address(address) {
         if (addressRegex.test(address))
             this._address = address;
         else
-            throw "ADDRESS is Incorrect";
+            throw new Error( "ADDRESS is Incorrect");
     }
 
     set city(city) {
         if (cityStateRegex.test(city))
             this._city = city;
         else
-            throw "CITY is Incorrect";
+            throw new Error("CITY is Incorrect");
     }
 
     set state(state) {
         if (cityStateRegex.test(state))
             this._state = state;
         else
-            throw "STATE is Incorrect";
+            throw new Error("STATE is Incorrect");
     }
 
     set zip(zip) {
         if (zipRegex.test(zip))
             this._zip = zip;
         else
-            throw "ZIP is Incorrect";
+            throw new Error ("ZIP is Incorrect");
     }
 
     set phoneNumber(phoneNumber) {
         if (phoneNumberRegex.test(phoneNumber))
             this._phoneNumber = phoneNumber;
         else
-            throw "PHONE NUMBER is Incorrect";
+            throw new Error ("PHONE NUMBER is Incorrect");
     }
 
     set email(email) {
         if (emailRegex.test(email))
             this._email = email;
         else
-            throw "EMAIL ADDRESS is Incorrect";
+            throw new Error ("EMAIL ADDRESS is Incorrect");
     }
 
     toString() {
@@ -111,9 +113,16 @@ class Contact {
     }
 }
 
+let addressBookArray = new Array();
 try {
-    let contact = new Contact("Kaynat", "Zehra", "XYZ", "UP", 234567,  9177685934, "abc@gmail.com");
-    console.log(contact.toString());
+    addressBookArray.push(new Contact("Raghu", "Chavan", "", "Bangalore", "Karnataka", 560007, "91 7876543210", "raghu@gmail.com"));
+} catch (e) {
+    console.error(e);
+}
+
+try {
+    addressBookArray.push(new Contact("Kaynat", "Zehra", "XYZ", "UP", 234567,"91 9177685934", "abc@gmail.com"));
 } catch (e) {
     console.log(e);
 }
+console.log(addressBookArray);
