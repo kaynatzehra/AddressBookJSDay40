@@ -165,7 +165,7 @@ function countContacts(contactArray){
     }
     else{
         try{
-            addressBookArray.push(new Contact(firstName,lastName,'Vidyanagar','Davangere','Karnataka',577004,'91 7894036987','kavya@gmail.com'));
+            addressBookArray.push(new Contact(firstName,lastName,'Lebas','Davangere','Karnataka',577004,'91 7561036987','shiv@gmail.com'));
             
             console.log("Contact is added. ");
         }catch(Exception){
@@ -195,16 +195,26 @@ function isPresentInCity(contactArray, name, cityName) {
     console.log('View person contact by city');
    let contact=contactArray.filter(a => a.city == cityName).find(b => b.firstName==name);
    console.log(contact.toString());
-    
+     
+}
+
+function getCountByCity(contactArray, cityName) {
+    let count = contactArray.filter(contact => contact.city == cityName).reduce((a, b) => a.concat(b), []).length;
+    console.log("Number of contacts living in this city are: " + count);
+}
+
+function getCountByState(contactArray, stateName) {
+    let count = contactArray.filter(contact => contact.state == stateName).reduce((a, b) => a.concat(b), []).length;
+    console.log("Number of contacts living in this state are: " + count);
 }
 try {
-    addressBookArray.push(new Contact("Nayana", "Ksss", "Vidyanagar", "Davangere", "Karnataka", 577004, "91 7896543210", "nayu@gmail.com"));
+    addressBookArray.push(new Contact("Ana", "Singh", "India", "Ghaziabad", "UP", 577044, "91 6666543210", "ana@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Priya", "Kolur","leninnagar", "Davangere", 'Karnataka', 577004, '91 6784563210', "priya@gmail.com"));
+    addressBookArray.push(new Contact("Kaynat", "Zehra", "XYZ", "UP", 234567,  9177685934, "abc@gmail.com"));
 } catch (e) {
     console.log(e);
 }
@@ -223,4 +233,6 @@ console.log(addressBookArray);
 searchByCityOrState(addressBookArray,'Davangere');
 searchByCityOrState(addressBookArray,'Karnataka');
 isPresentInState(addressBookArray,"Kaynat","UP");
-isPresentInCity(addressBookArray,"Shivani","Bangalore");
+isPresentInCity(addressBookArray,"Shivani","Davangere");
+getCountByCity(addressBookArray, "Davangere");
+getCountByState(addressBookArray, "Karnataka");
