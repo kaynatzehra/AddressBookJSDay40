@@ -195,7 +195,7 @@ function isPresentInCity(contactArray, name, cityName) {
     console.log('View person contact by city');
    let contact=contactArray.filter(a => a.city == cityName).find(b => b.firstName==name);
    console.log(contact.toString());
-     
+    
 }
 
 function getCountByCity(contactArray, cityName) {
@@ -206,6 +206,11 @@ function getCountByCity(contactArray, cityName) {
 function getCountByState(contactArray, stateName) {
     let count = contactArray.filter(contact => contact.state == stateName).reduce((a, b) => a.concat(b), []).length;
     console.log("Number of contacts living in this state are: " + count);
+}
+
+function sortedContacts(contactArray) {
+        console.log('\nSorted contacts');
+        console.log(contactArray.sort((a,b)=>a.firstName.localeCompare(b.firstName)));
 }
 try {
     addressBookArray.push(new Contact("Ana", "Singh", "India", "Ghaziabad", "UP", 577044, "91 6666543210", "ana@gmail.com"));
@@ -232,7 +237,8 @@ addContact(addressBookArray,"Shivani", "Kasaudhan");
 console.log(addressBookArray);
 searchByCityOrState(addressBookArray,'Davangere');
 searchByCityOrState(addressBookArray,'Karnataka');
-isPresentInState(addressBookArray,"Kaynat","UP");
+isPresentInState(addressBookArray,"Kaynat","Karnataka");
 isPresentInCity(addressBookArray,"Shivani","Davangere");
 getCountByCity(addressBookArray, "Davangere");
 getCountByState(addressBookArray, "Karnataka");
+sortedContacts(addressBookArray);
