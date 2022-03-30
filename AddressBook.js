@@ -165,7 +165,7 @@ function countContacts(contactArray){
     }
     else{
         try{
-            addressBookArray.push(new Contact(firstName,lastName,'Lebas','Davangere','Karnataka',577004,'91 7561036987','shiv@gmail.com'));
+            addressBookArray.push(new Contact(firstName,lastName,'Vidyanagar','Davangere','Karnataka',577004,'91 7894036987','kavya@gmail.com'));
             
             console.log("Contact is added. ");
         }catch(Exception){
@@ -184,14 +184,27 @@ function searchByCityOrState(contactArray,cityorstate){
         contactArray.filter(name => name.state == cityorstate).forEach(contact=>console.log(contact.toString()));
     }
 }
+
+function isPresentInState(contactArray,name,stateName){
+    console.log('View person contact by state');
+   let contact=contactArray.filter(a => a.state == stateName).find(b => b.firstName==name);
+   console.log(contact.toString());
+}
+
+function isPresentInCity(contactArray, name, cityName) {
+    console.log('View person contact by city');
+   let contact=contactArray.filter(a => a.city == cityName).find(b => b.firstName==name);
+   console.log(contact.toString());
+    
+}
 try {
-    addressBookArray.push(new Contact("Ana", "Singh", "India", "Ghaziabad", "UP", 577044, "91 6666543210", "ana@gmail.com"));
+    addressBookArray.push(new Contact("Nayana", "Ksss", "Vidyanagar", "Davangere", "Karnataka", 577004, "91 7896543210", "nayu@gmail.com"));
 } catch (e) {
     console.error(e);
 }
 
 try {
-    addressBookArray.push(new Contact("Kaynat", "Zehra", "XYZ", "UP", 234567,  9177685934, "abc@gmail.com"));
+    addressBookArray.push(new Contact("Priya", "Kolur","leninnagar", "Davangere", 'Karnataka', 577004, '91 6784563210', "priya@gmail.com"));
 } catch (e) {
     console.log(e);
 }
@@ -209,3 +222,5 @@ addContact(addressBookArray,"Shivani", "Kasaudhan");
 console.log(addressBookArray);
 searchByCityOrState(addressBookArray,'Davangere');
 searchByCityOrState(addressBookArray,'Karnataka');
+isPresentInState(addressBookArray,"Kaynat","UP");
+isPresentInCity(addressBookArray,"Shivani","Bangalore");
