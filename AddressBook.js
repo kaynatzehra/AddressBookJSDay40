@@ -154,8 +154,13 @@ function deleteContact(firstName, lastName) {
     }
 }
 
+function countContacts(contactArray){
+    let count= contactArray.reduce((a, b) => a.concat(b), []).length;
+    console.log("Number of contacts is: "+count);
+ }
+
 try {
-    addressBookArray.push(new Contact("Ana", "Singh", "India", "Ghaziabad", "UP", 577044, "91 6666543210", "ana@gmail.com"));
+    addressBookArray.push(new Contact("Sanju", "Lodhi", "Plm", "Deva", "Karnataka", 577004, "91 7776543310", "sanju@gmail.com"));
 } catch (e) {
     console.error(e);
 }
@@ -167,10 +172,11 @@ try {
 }
 console.log(addressBookArray);
 console.log("\nAfter Editing Contact")
-editContact("Ana", "Singh", "city", "Ghaziabad");
-editContact("Ana", "Singh", "state", "UP");
-editContact("Ana", "Singh", "address", "India");
+editContact("Sanju", "Lodhi", "city", "Deva");
+editContact("Sanju", "Lodhi", "state", "Karanataka");
+editContact("Sanju", "Lodhi", "address", "Plm");
 console.log(addressBookArray);
 
-deleteContact("Ana", "Singh");
+deleteContact("Sanjana", "Mjjjj");
 console.log(addressBookArray);
+countContacts(addressBookArray);
